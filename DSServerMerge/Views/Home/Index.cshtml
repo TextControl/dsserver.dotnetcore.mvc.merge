@@ -1,0 +1,57 @@
+﻿@using TXTextControl.DocumentServices.DocumentEditor;
+@model List<DSServerMerge.Models.Report>
+
+<div class="row">
+
+    <div class="col-12">
+
+        <input class="mb-3" type="button" onclick="mergeDocument()" value="Merge Template" />
+
+        @Html.TXTextControl().DocumentEditor(s => {
+            s.Width = "100%";
+            s.Height = "40rem";
+            s.ServiceUrl = "https://trial.dsserver.io";
+            s.OAuthSettings.ClientId = "dsserver.EMRWLJAdPpZirYLDNAF0gP7QzQaB8OfH";
+            s.OAuthSettings.ClientSecret = "OGC24l8BcjVpc90SHt0gHJhDjtYJP70a";
+            s.JsonData = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+        }).Render()
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+		function mergeDocument() {
+
+            // save the document in the internal tx format
+            TXTextControl.saveDocument(TXTextControl.StreamType.InternalUnicodeFormat, function (e) {
+
+                var serviceURL = "@Url.Action("Merge", "Home")";
+
+                // send document to controller
+                $.ajax({
+                    type: "POST",
+                    url: serviceURL,
+                    data: {
+                        document: e.data // the template
+                    },
+                    success: successFunc,
+                    error: errorFunc
+                });
+            });
+		}
+
+        function successFunc(data, status) {
+            // load the resulting document back into the editor
+            TXTextControl.loadDocument(TXTextControl.StreamType.InternalUnicodeFormat, data);
+        }
+
+        function errorFunc() {
+            alert("Error");
+        }
+
+    </script>
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "Customers": [
+      {
+        "Name": "Jackson",
+        "Firstname": "Jack",
+        "Company": "Text Control, LLC"
+      },
+      {
+        "Name": "Petersen",
+        "Firstname": "Peter",
+        "Company": "Text Control, LLC"
+      }
+    ]
+  }
+]
