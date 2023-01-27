@@ -17,8 +17,10 @@ namespace DSServerMerge.Controllers {
 		[HttpPost]
 		public IActionResult Merge(Template template) {
 
-			// private OAuth settings
-			var os = new TXTextControl.DocumentServices.DocumentProcessing.OAuth.OAuthSettings(
+            // private OAuth settings
+            // // please enter your current token:
+            // https://www.dsserver.io/trial/
+            var os = new TXTextControl.DocumentServices.DocumentProcessing.OAuth.OAuthSettings(
 					 "dsserver.EMRWLJAdPpZirYLDNAF0gP7QzQaB8OfH",
 					 "OGC24l8BcjVpc90SHt0gHJhDjtYJP70a");
 
